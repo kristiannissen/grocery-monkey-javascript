@@ -9,7 +9,7 @@ const App = () => {
     const [items, setItems] = useState([])
     // UseEffect
     useEffect(() => {
-        fetch("http://localhost:3001/items")
+        fetch("https://grocery-monkey.herokuapp.com/items")
         .then(response => response.json())
         .then(data => setItems(data))
     }, [])
