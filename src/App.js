@@ -1,9 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+
+import Header from './components/header';
+import List from './components/list';
 // import './App.css';
 
-function App() {
+const App = () => {
+    // State
+    const [items, setItems] = useState([])
+    // UseEffect
+    useEffect(() => {
+        fetch("http://localhost:3001/items")
+        .then(response => response.json())
+        .then(data => setItems(data))
+    }, [])
+
   return (
-    <h1 className="font-bold">Hello Kitty</h1>
+    <div className="">
+        <Header title="Hello Kitty" />
+        <main><List arr={items} /></main>
+      </div>
   );
 }
 
