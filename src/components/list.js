@@ -1,16 +1,11 @@
 /**
  * List
  */
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const List = ({ arr }) => {
-  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    setData(arr);
-  }, [arr]);
-
-  let items = data.map((i) => {
+  let items = arr.map((i) => {
     return (
       <li key={i.Key} className="py-2">
         {i.Name} {i.QTY} {i.Unit}{" "}

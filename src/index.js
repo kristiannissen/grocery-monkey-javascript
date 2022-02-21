@@ -1,13 +1,30 @@
+/**
+ *
+ */
+import {render} from "react-dom";
 import React from "react";
-import ReactDOM from "react-dom";
 import "./styles/index.css";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
+import {
+    BrowserRouter,
+    Routes,
+    Route
+} from "react-router-dom";
 
-ReactDOM.render(
+import ListPage from "./pages/listpage";
+import ItemForm from "./pages/itemform";
+
+render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<ListPage />} />
+            <Route path="/grocery/new" element={<ItemForm />} />
+            <Route path="/grocery/:key/edit" element={<ItemForm />} />
+        </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
