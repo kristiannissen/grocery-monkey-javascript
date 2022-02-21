@@ -1,10 +1,10 @@
 /**
  * Header component
  */
-import React from 'react';
+import React from "react";
 
-const Header = ({title}) => {
-    return (<header>{title}</header>)
-}
+const Header = ({ title }) => {
+  return <header>{title}</header>;
+};
 
 export default Header;
