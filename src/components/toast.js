@@ -3,7 +3,7 @@
  */
 import ReactDOM from "react-dom";
 import { useEffect, useState } from "react";
-import styles from "../styles/toast.module.css"
+import styles from "../styles/toast.module.css";
 
 const Toast = ({ show, message, onHide }) => {
   const [isBrowser, setIsBrowser] = useState(false);
