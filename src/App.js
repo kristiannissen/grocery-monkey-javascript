@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Header from "./components/header";
 import List from "./components/list";
 import Toast from "./components/toast";
-import Loader from "./components/loader";
+import Toolbar from "./components/toolbar";
 // import './App.css';
 
 const App = () => {
@@ -13,14 +13,13 @@ const App = () => {
   const [toastMessage, setToastMessage] = useState("");
   // UseEffect
   useEffect(() => {
+    setToastMessage("Data loaded");
+    setShowToast(true);
     fetch("https://grocery-monkey.herokuapp.com/items")
       .then((response) => response.json())
       .then((data) => {
         // Update state for items
         setItems(data);
-        // Update toast
-        setShowToast(true);
-        setToastMessage("Data loaded");
       });
   }, []);
 
@@ -35,6 +34,7 @@ const App = () => {
         show={showToast}
         onHide={() => setShowToast(false)}
       />
+      <Toolbar />
     </div>
   );
 };
