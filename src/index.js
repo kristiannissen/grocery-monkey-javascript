@@ -13,8 +13,8 @@ import {
     Route
 } from "react-router-dom";
 
-import ListPage from "./pages/listpage";
-import ItemForm from "./pages/itemform";
+import ListPage from "./routes/listpage";
+import ItemForm from "./routes/itemform";
 
 render(
   <React.StrictMode>
