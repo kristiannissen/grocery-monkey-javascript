@@ -14,12 +14,14 @@ import {
 
 import ListPage from "./routes/listpage";
 import ItemForm from "./routes/itemform";
+import Home from "./routes/home";
 
 render(
   <React.StrictMode>
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<ListPage />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/groceries" element={<ListPage />} />
             <Route path="/grocery/new" element={<ItemForm />} />
             <Route path="/grocery/:id/edit" element={<ItemForm />} />
         </Routes>
