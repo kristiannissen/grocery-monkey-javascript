@@ -4,7 +4,6 @@
 import {render} from "react-dom";
 import React from "react";
 import "./styles/index.css";
-import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import {
@@ -22,7 +21,7 @@ render(
         <Routes>
             <Route path="/" element={<ListPage />} />
             <Route path="/grocery/new" element={<ItemForm />} />
-            <Route path="/grocery/:key/edit" element={<ItemForm />} />
+            <Route path="/grocery/:id/edit" element={<ItemForm />} />
         </Routes>
     </BrowserRouter>
   </React.StrictMode>,
