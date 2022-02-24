@@ -18,6 +18,7 @@ const Signin = () => {
         // Post the username to get a jwt token
         fetch("https://grocery-monkey.herokuapp.com/sign", {
             method: "POST",
+            mode: "cors",
             headers: {
                 "Content-Type": "application/json",
             },
