@@ -1,30 +1,31 @@
 /**
  *
  */
-import {render} from "react-dom";
+import { render } from "react-dom";
 import React from "react";
 import "./styles/index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
-import {
-    BrowserRouter,
-    Routes,
-    Route
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import ListPage from "./routes/listpage";
-import ItemForm from "./routes/itemform";
 import Home from "./routes/home";
+import Groceries from "./routes/groceries";
+import Signin from "./routes/signin";
+import GroceryForm from "./routes/groceryform";
 
 render(
   <React.StrictMode>
     <BrowserRouter>
+      <div className="container">
         <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/groceries" element={<ListPage />} />
-            <Route path="/grocery/new" element={<ItemForm />} />
-            <Route path="/grocery/:id/edit" element={<ItemForm />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/groceries" element={<Groceries />}>
+            <Route path="new" element={<GroceryForm />} />
+            <Route path=":id/update" element={<GroceryForm />} />
+          </Route>
+          <Route path="/signin" element={<Signin />} />
         </Routes>
+      </div>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
