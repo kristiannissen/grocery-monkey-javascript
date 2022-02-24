@@ -8,7 +8,6 @@ const Signin = () => {
     const [username, setUsername] = useState("")  
 
     useEffect(() => {
-        console.log(username)
     }, [])
     const changeUsername = event => setUsername(event.target.value)
 
