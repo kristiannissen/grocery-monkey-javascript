@@ -13,17 +13,14 @@ const Signin = () => {
   const changeUsername = (event) => setUsername(event.target.value);
 
   const authenticate = () => {
-    // Build form
-    let fD = new FormData();
-    fD.append("user_name", username.trim());
+    // Build request body
+    let data = new URLSearchParams()
+      data.append("username", username)
     // Post the username to get a jwt token
     fetch("http://localhost:3001/sign", {
       method: "POST",
       mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: fD,
+      body: data,
     })
       .then((response) => response.json())
       .then((data) => {
@@ -44,6 +41,7 @@ const Signin = () => {
           type="text"
           className="input-field__text"
           id="username"
+            name="user_name"
           value={username}
           onChange={changeUsername}
         />
