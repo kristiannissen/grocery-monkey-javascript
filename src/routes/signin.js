@@ -14,10 +14,10 @@ const Signin = () => {
 
   const authenticate = () => {
     // Build request body
-    let data = new URLSearchParams()
-      data.append("username", username)
+    let data = new URLSearchParams();
+    data.append("username", username);
     // Post the username to get a jwt token
-    fetch("http://localhost:3001/sign", {
+    fetch("http://localhost:3001/authenticate", {
       method: "POST",
       mode: "cors",
       body: data,
@@ -32,7 +32,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="p-6 rounded-lg shadow-lg bg-white max-w-sm">
+    <div className="p-6 rounded-lg shadow-lg bg-white max-w-sm content-center">
       <div className="mb-6">
         <label htmlFor="username" className="label">
           Username
@@ -41,7 +41,7 @@ const Signin = () => {
           type="text"
           className="input-field__text"
           id="username"
-            name="user_name"
+          name="user_name"
           value={username}
           onChange={changeUsername}
         />
