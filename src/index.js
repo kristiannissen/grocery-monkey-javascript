@@ -11,7 +11,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./routes/home";
 import Groceries from "./routes/groceries";
 import Signin from "./routes/signin";
-import GroceryForm from "./routes/groceryform";
 
 render(
   <React.StrictMode>
@@ -19,10 +18,7 @@ render(
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/groceries" element={<Groceries />}>
-            <Route path="new" element={<GroceryForm />} />
-            <Route path=":id/update" element={<GroceryForm />} />
-          </Route>
+          <Route path="/groceries" element={<Groceries />} />
           <Route path="/signin" element={<Signin />} />
         </Routes>
       </div>

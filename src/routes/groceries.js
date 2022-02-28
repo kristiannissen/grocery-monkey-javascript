@@ -27,19 +27,19 @@ const Groceries = () => {
 
   useEffect(() => {
     let token = localStorage.getItem("_token");
-    user.groceries = groceries
+    user.groceries = groceries;
     if (groceries.length > 0) {
-          fetch(`http://localhost:3001/groceries/${user.id}/update`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(user),
-        })
-          .then((response) => response.json())
-          .then((data) => setUser(data));
-        }
+      fetch(`http://localhost:3001/groceries/${user.id}/update`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(user),
+      })
+        .then((response) => response.json())
+        .then((data) => setUser(data));
+    }
     return () => mountRef.current;
   }, [groceries]);
 
