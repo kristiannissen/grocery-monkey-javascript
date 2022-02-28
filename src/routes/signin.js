@@ -24,7 +24,7 @@ const Signin = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Store the token
+        // Store the user
         localStorage.setItem("_token", data.token);
         // Redirect user
         navigate("/groceries");
@@ -34,12 +34,12 @@ const Signin = () => {
   return (
     <div className="p-6 rounded-lg shadow-lg bg-white max-w-sm content-center">
       <div className="mb-6">
-        <label htmlFor="username" className="label">
+        <label htmlFor="username" className="field__label">
           Username
         </label>
         <input
           type="text"
-          className="input-field__text"
+          className="field__text"
           id="username"
           name="user_name"
           value={username}
