@@ -18,40 +18,9 @@ const Groceries = () => {
     if (message !== "") showToast(true);
   }, [message]);
 
-  useEffect(() => {
-    let token = localStorage.getItem("_token");
-    fetch("http://localhost:3001/groceries", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setUser(data);
-      })
-      .catch((error) => setMessage("Ouch! Something went wrong!"));
-  }, [user]);
+  useEffect(() => {}, [user]);
 
-  useEffect(() => {
-    let token = localStorage.getItem("_token");
-    user.groceries = groceries;
-    if (groceries.length > 0) {
-      fetch(`http://localhost:3001/groceries/${user.id}/update`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(user),
-      })
-        .then((response) => response.json())
-        .then((data) => setUser(data))
-        .catch((error) => setMessage("Ouch! Something went wrong!"));
-    }
-    return () => mountRef.current;
-  }, [groceries]);
+  useEffect(() => {}, [groceries]);
 
   const handleClick = () => {
     setGroceries([...groceries, grocery]);

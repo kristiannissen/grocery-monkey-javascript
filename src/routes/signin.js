@@ -22,20 +22,31 @@ const Signin = () => {
 
   const authenticate = () => {
     // Build request body
-    let data = new URLSearchParams();
-    data.append("username", username);
+    let user = {
+      username: username,
+    };
     // Post the username to get a jwt token
-    fetch("http://localhost:3001/authenticate", {
+    fetch(`${process.env.REACT_APP_DOMAIN}/authenticate`, {
       method: "POST",
       mode: "cors",
-      body: data,
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
       .then((response) => response.json())
       .then((data) => {
         // Store the user
-        localStorage.setItem("_token", data.token);
-        // Redirect user
-        navigate("/groceries");
+        if (data.token == "") {
+          setMessage("Invalid token");
+        } else {
+          // Save token
+          localStorage.setItem("_token", data.token);
+          // Save user
+          localStorage.setItem("user", JSON.stringify(data.groceries));
+          // Redirect user
+          navigate("/groceries");
+        }
       })
       .catch((error) => setMessage("Unable to sign in!"));
   };
