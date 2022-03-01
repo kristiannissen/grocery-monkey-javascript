@@ -2,7 +2,7 @@
  * @file Groceries
  *
  */
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 // Custom components
 import Toast from "../components/toast";
 
@@ -18,9 +18,34 @@ const Groceries = () => {
     if (message !== "") showToast(true);
   }, [message]);
 
-  useEffect(() => {}, [user]);
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user")));
+    setGroceries(JSON.parse(localStorage.getItem("user")).groceries);
+  }, []);
 
-  useEffect(() => {}, [groceries]);
+  const updateGroceries = useCallback(() => {
+    if (groceries.length > 0) {
+      let token = localStorage.getItem("token");
+      let user = JSON.parse(localStorage.getItem("user"));
+      user.groceries = groceries;
+
+      fetch(`${process.env.REACT_APP_DOMAIN}/groceries/${user.id}/update`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(user),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => setMessage("Something went wrong!"));
+    }
+  }, [groceries]);
+
+  useEffect(() => {
+    updateGroceries();
+  }, [updateGroceries]);
 
   const handleClick = () => {
     setGroceries([...groceries, grocery]);

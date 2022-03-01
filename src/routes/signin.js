@@ -41,7 +41,7 @@ const Signin = () => {
           setMessage("Invalid token");
         } else {
           // Save token
-          localStorage.setItem("_token", data.token);
+          localStorage.setItem("token", data.token);
           // Save user
           localStorage.setItem("user", JSON.stringify(data.groceries));
           // Redirect user
