@@ -30,7 +30,8 @@ const Groceries = () => {
       .then((response) => response.json())
       .then((data) => {
         setUser(data);
-      }).catch(error => setMessage("Ouch! Something went wrong!"));
+      })
+      .catch((error) => setMessage("Ouch! Something went wrong!"));
   }, [user]);
 
   useEffect(() => {
@@ -46,7 +47,8 @@ const Groceries = () => {
         body: JSON.stringify(user),
       })
         .then((response) => response.json())
-        .then((data) => setUser(data)).catch(error => setMessage("Ouch! Something went wrong!"));
+        .then((data) => setUser(data))
+        .catch((error) => setMessage("Ouch! Something went wrong!"));
     }
     return () => mountRef.current;
   }, [groceries]);
