@@ -4,13 +4,21 @@
  */
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+// Custom components
+import Toast from "../components/toast";
 
 const Signin = () => {
   const [username, setUsername] = useState("");
+  const [toast, showToast] = useState(false);
+  const [message, setMessage] = useState("");
   let navigate = useNavigate();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (message !== "") showToast(true);
+  }, [message]);
   const changeUsername = (event) => setUsername(event.target.value);
+
+  const hideToast = () => showToast(false);
 
   const authenticate = () => {
     // Build request body
@@ -28,27 +36,33 @@ const Signin = () => {
         localStorage.setItem("_token", data.token);
         // Redirect user
         navigate("/groceries");
-      });
+      })
+      .catch((error) => setMessage("Unable to sign in!"));
   };
 
   return (
-    <div className="p-6 rounded-lg shadow-lg bg-white max-w-sm content-center">
-      <div className="mb-6">
-        <label htmlFor="username" className="field__label">
-          Username
-        </label>
-        <input
-          type="text"
-          className="field__text"
-          id="username"
-          name="user_name"
-          value={username}
-          onChange={changeUsername}
-        />
+    <div className="flex justify-center">
+      <div className="p-6 rounded-lg shadow-lg bg-white max-w-sm content-center">
+        <div className="form_group">
+          <label htmlFor="username" className="field__label">
+            Username
+          </label>
+          <input
+            type="text"
+            className="field__text"
+            id="username"
+            name="user_name"
+            value={username}
+            onChange={changeUsername}
+          />
+        </div>
+        <div className="form_group">
+          <button type="submit" className="btn-primary" onClick={authenticate}>
+            Submit
+          </button>
+        </div>
       </div>
-      <button type="submit" className="btn-primary" onClick={authenticate}>
-        Submit
-      </button>
+      <Toast show={toast} message={message} onHide={hideToast} />
     </div>
   );
 };
