@@ -3,12 +3,20 @@
  *
  */
 import React, { useEffect, useState, useRef } from "react";
+// Custom components
+import Toast from "../components/toast";
 
 const Groceries = () => {
   const [groceries, setGroceries] = useState([]);
   const [grocery, setGrocery] = useState({ name: "", id: "" });
   const [user, setUser] = useState({});
+  const [toast, showToast] = useState(false);
+  const [message, setMessage] = useState("");
   const mountRef = useRef(true);
+
+  useEffect(() => {
+    if (message !== "") showToast(true);
+  }, [message]);
 
   useEffect(() => {
     let token = localStorage.getItem("_token");
@@ -22,7 +30,7 @@ const Groceries = () => {
       .then((response) => response.json())
       .then((data) => {
         setUser(data);
-      });
+      }).catch(error => setMessage("Ouch! Something went wrong!"));
   }, [user]);
 
   useEffect(() => {
@@ -38,7 +46,7 @@ const Groceries = () => {
         body: JSON.stringify(user),
       })
         .then((response) => response.json())
-        .then((data) => setUser(data));
+        .then((data) => setUser(data)).catch(error => setMessage("Ouch! Something went wrong!"));
     }
     return () => mountRef.current;
   }, [groceries]);
@@ -93,6 +101,7 @@ const Groceries = () => {
           </button>
         </div>
       </div>
+      <Toast show={toast} message={message} />
     </div>
   );
 };

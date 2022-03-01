@@ -14,18 +14,18 @@ import Signin from "./routes/signin";
 
 render(
   <div className="min-w-full">
-  <React.StrictMode>
-    <BrowserRouter>
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/groceries" element={<Groceries />} />
-          <Route path="/signin" element={<Signin />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
-  </React.StrictMode>
-  <div id="toast" className="min-w-full" />
+    <React.StrictMode>
+      <BrowserRouter>
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/groceries" element={<Groceries />} />
+            <Route path="/signin" element={<Signin />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </React.StrictMode>
+    <div id="toast" className="min-w-full" />
   </div>,
   document.getElementById("root")
 );
@@ -33,7 +33,7 @@ render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
-serviceWorkerRegistration.unregister();
+serviceWorkerRegistration.register();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

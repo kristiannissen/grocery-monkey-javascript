@@ -14,7 +14,7 @@ const Toast = ({ show, message }) => {
   const content = show ? (
     <div className="alert__warning">
       <span className="block sm:inline">{message}</span>
-      <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+      <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
         <svg
           className="fill-current h-6 w-6 text-red-500 ml-1"
           role="button"

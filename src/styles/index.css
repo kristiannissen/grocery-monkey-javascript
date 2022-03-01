@@ -18,6 +18,6 @@
     @apply py-4;
 }
 .alert__warning {
-    @apply bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded absolute bottom-4 w-64;
+    @apply bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded absolute bottom-4 w-11/12;
 }
 @tailwind utilities;
