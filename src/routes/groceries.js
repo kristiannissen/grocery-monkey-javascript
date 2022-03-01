@@ -23,7 +23,7 @@ const Groceries = () => {
       .then((data) => {
         setUser(data);
       });
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     let token = localStorage.getItem("_token");

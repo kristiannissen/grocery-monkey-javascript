@@ -13,6 +13,7 @@ import Groceries from "./routes/groceries";
 import Signin from "./routes/signin";
 
 render(
+  <div className="min-w-full">
   <React.StrictMode>
     <BrowserRouter>
       <div className="container">
@@ -23,7 +24,9 @@ render(
         </Routes>
       </div>
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
+  <div id="toast" className="min-w-full" />
+  </div>,
   document.getElementById("root")
 );
 
