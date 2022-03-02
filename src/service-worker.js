@@ -84,7 +84,7 @@ const bgSyncPlugin = new new BackgroundSyncPlugin('myQueueName', {
     maxRetentionTime: 24 * 60
 })
 
-registerRouter(
+registerRoute(
     /\api\/groceries/,
     new NetworkOnly({
         plugins: [bgSyncPlugin]
