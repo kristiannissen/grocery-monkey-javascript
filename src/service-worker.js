@@ -80,7 +80,7 @@ self.addEventListener("sync", (event) => {
 });
 
 // Background sync
-const bgSyncPlugin = new new BackgroundSyncPlugin('myQueueName', {
+const bgSyncPlugin = new BackgroundSyncPlugin('myQueueName', {
     maxRetentionTime: 24 * 60
 })
 
