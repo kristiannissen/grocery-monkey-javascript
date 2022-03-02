@@ -30,6 +30,7 @@ const Groceries = () => {
 
       fetch(`${process.env.REACT_APP_DOMAIN}/groceries/${user.id}/update`, {
         method: "PUT",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
