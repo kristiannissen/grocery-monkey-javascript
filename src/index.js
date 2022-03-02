@@ -13,7 +13,7 @@ import Groceries from "./routes/groceries";
 import Signin from "./routes/signin";
 
 render(
-  <div className="min-w-full">
+  <div className="min-w-full px-2">
     <React.StrictMode>
       <BrowserRouter>
         <div className="container">
