@@ -37,7 +37,7 @@ const Signin = () => {
       .then((response) => response.json())
       .then((data) => {
         // Store the user
-        if (data.token == "") {
+        if (data.token === "") {
           setMessage("Invalid token");
         } else {
           // Save token
