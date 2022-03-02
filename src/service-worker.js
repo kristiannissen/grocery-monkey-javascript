@@ -14,7 +14,6 @@ import { registerRoute } from "workbox-routing";
 import { StaleWhileRevalidate } from "workbox-strategies";
 
 import {BackgroundSyncPlugin} from 'workbox-background-sync';
-import {registerRoute} from 'workbox-routing';
 import {NetworkOnly} from 'workbox-strategies';
 
 clientsClaim();
