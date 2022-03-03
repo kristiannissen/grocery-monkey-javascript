@@ -6,13 +6,21 @@ import { Link } from "react-router-dom";
 
 const MealPlan = () => {
   const randId = (pow) => Math.floor(Math.random() * pow);
-  const [mealPlan, setMealPlan] = useState([]);
+  const [meals, setMeals] = useState([]);
   const [meal, setMeal] = useState({
     name: "",
     id: randId(new Date().getTime()),
   });
 
-  useEffect(() => {}, [], []);
+  useEffect(() => {
+    // Initial data
+    let data = localStorage.getItem("meals");
+    setMeals(data ? JSON.parse(data) : []);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("meals", JSON.stringify(meals));
+  }, [meals]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,12 +35,11 @@ const MealPlan = () => {
   };
 
   const handleClick = () => {
-    setMealPlan([...mealPlan, meal]);
+    setMeals([...meals, meal]);
     setMeal({ name: "", id: "" });
-    console.log("here");
   };
 
-  const handleDelete = (id) => setMealPlan(mealPlan.filter((m) => m.id !== id));
+  const handleDelete = (id) => setMeals(meals.filter((m) => m.id !== id));
 
   return (
     <div className="min-w-full">
@@ -45,7 +52,7 @@ const MealPlan = () => {
         </div>
       </div>
       <div className="min-w-full">
-        {mealPlan.map((meal, i) => (
+        {meals.map((meal, i) => (
           <div className="flex flex-row px-1.5 py-1.5" key={meal.id}>
             <div className="basis-1/4">Day {i + 1}</div>
             <div className="basis-2/4">{meal.name}</div>
@@ -63,7 +70,7 @@ const MealPlan = () => {
       <div className="">
         <div className="form_group">
           <label htmlFor="entry" className="field__label">
-            Add Grocery
+            Add Meal
           </label>
           <input
             type="text"
