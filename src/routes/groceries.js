@@ -2,7 +2,7 @@
  * @file Groceries
  *
  */
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 // Custom components
 import Toast from "../components/toast";
 

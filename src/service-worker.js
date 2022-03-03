@@ -74,11 +74,6 @@ self.addEventListener("message", (event) => {
 });
 
 // Any other custom service worker logic can go here.
-
-self.addEventListener("sync", (event) => {
-  console.log(event);
-});
-
 // Background sync
 const bgSyncPlugin = new BackgroundSyncPlugin("myQueueName", {
   maxRetentionTime: 24 * 60,
@@ -91,3 +86,5 @@ registerRoute(
   }),
   "POST"
 );
+
+
