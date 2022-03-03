@@ -23,38 +23,38 @@ const Groceries = () => {
     // setGroceries(JSON.parse(localStorage.getItem("user")).groceries);
   }, []);
 
-    useEffect(() => {
-        console.log("useEffect", groceries, loading)
-        if (loading === true) {
-            let token = localStorage.getItem("token")
-            let user = JSON.parse(localStorage.getItem("user"))
-            user.groceries = groceries
+  useEffect(() => {
+    console.log("useEffect", groceries, loading);
+    if (loading === true) {
+      let token = localStorage.getItem("token");
+      let user = JSON.parse(localStorage.getItem("user"));
+      user.groceries = groceries;
 
-            fetch(`${process.env.REACT_APP_DOMAIN}/groceries/${user.id}/update`, {
-                method: "PUT",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify(user),
-            })
-            .then(response => response.json())
-            .then(data => console.log(data.groceries))
-            .catch(error => setMessage("Ouch! Something went wrong"))
-        }
+      fetch(`${process.env.REACT_APP_DOMAIN}/groceries/${user.id}/update`, {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(user),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data.groceries))
+        .catch((error) => setMessage("Ouch! Something went wrong"));
+    }
 
-        return () => setLoading(false)
-    }, [groceries, loading])
+    return () => setLoading(false);
+  }, [groceries, loading]);
 
   const handleClick = () => {
     setGroceries([...groceries, grocery]);
     setGrocery({ name: "", id: "" });
-    setLoading(true)
+    setLoading(true);
   };
 
   const handleChange = (e) => {
-    let entry = { name: e.target.value, id: (new Date()).getTime().toString() };
+    let entry = { name: e.target.value, id: new Date().getTime().toString() };
     setGrocery({
       ...grocery,
       ...entry,
@@ -63,7 +63,7 @@ const Groceries = () => {
 
   const handleDelete = (id) => {
     setGroceries(groceries.filter((g) => id !== g.id));
-    setLoading(true)
+    setLoading(true);
   };
 
   return (
