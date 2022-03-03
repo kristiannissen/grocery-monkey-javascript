@@ -20,7 +20,7 @@ const Groceries = () => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
-    // setGroceries(JSON.parse(localStorage.getItem("user")).groceries);
+    setGroceries(JSON.parse(localStorage.getItem("user")).groceries);
   }, []);
 
   useEffect(() => {
@@ -40,7 +40,10 @@ const Groceries = () => {
         body: JSON.stringify(user),
       })
         .then((response) => response.json())
-        .then((data) => console.log(data.groceries))
+        .then((data) => {
+          setGroceries(data.groceries);
+          localStorage.setItem("user", JSON.stringify(data));
+        })
         .catch((error) => setMessage("Ouch! Something went wrong"));
     }
 
