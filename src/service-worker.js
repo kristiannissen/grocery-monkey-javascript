@@ -13,8 +13,8 @@ import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
 import { StaleWhileRevalidate } from "workbox-strategies";
 
-import {BackgroundSyncPlugin} from 'workbox-background-sync';
-import {NetworkOnly} from 'workbox-strategies';
+import { BackgroundSyncPlugin } from "workbox-background-sync";
+import { NetworkOnly } from "workbox-strategies";
 
 clientsClaim();
 
@@ -80,14 +80,14 @@ self.addEventListener("sync", (event) => {
 });
 
 // Background sync
-const bgSyncPlugin = new BackgroundSyncPlugin('myQueueName', {
-    maxRetentionTime: 24 * 60
-})
+const bgSyncPlugin = new BackgroundSyncPlugin("myQueueName", {
+  maxRetentionTime: 24 * 60,
+});
 
 registerRoute(
-    /\api\/groceries/,
-    new NetworkOnly({
-        plugins: [bgSyncPlugin]
-    }),
-    "POST"
-)
+  /\api\/groceries/,
+  new NetworkOnly({
+    plugins: [bgSyncPlugin],
+  }),
+  "POST"
+);

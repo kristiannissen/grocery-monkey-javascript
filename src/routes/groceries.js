@@ -2,7 +2,7 @@
  * @file Groceries
  *
  */
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
 // Custom components
 import Toast from "../components/toast";
 
@@ -12,6 +12,7 @@ const Groceries = () => {
   const [user, setUser] = useState({});
   const [toast, showToast] = useState(false);
   const [message, setMessage] = useState("");
+  const isMounted = useRef(false);
 
   useEffect(() => {
     if (message !== "") showToast(true);
@@ -19,37 +20,13 @@ const Groceries = () => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
-    setGroceries(JSON.parse(localStorage.getItem("user")).groceries);
+    // setGroceries(JSON.parse(localStorage.getItem("user")).groceries);
   }, []);
-
-  const updateGroceries = useCallback(() => {
-    if (groceries.length > 0) {
-      let token = localStorage.getItem("token");
-      let user = JSON.parse(localStorage.getItem("user"));
-      user.groceries = groceries;
-
-      fetch(`${process.env.REACT_APP_DOMAIN}/groceries/${user.id}/update`, {
-        method: "PUT",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(user),
-      })
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-        .catch((error) => setMessage("Something went wrong!"));
-    }
-  }, [groceries]);
-
-  useEffect(() => {
-    updateGroceries();
-  }, [updateGroceries]);
 
   const handleClick = () => {
     setGroceries([...groceries, grocery]);
     setGrocery({ name: "", id: "" });
+    isMounted.current = true;
   };
 
   const handleChange = (e) => {
