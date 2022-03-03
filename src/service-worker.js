@@ -84,7 +84,5 @@ registerRoute(
   new NetworkOnly({
     plugins: [bgSyncPlugin],
   }),
-  "POST"
+  "PUT"
 );
-
-

@@ -18,8 +18,8 @@
       "sizes": "512x512"
     }
   ],
-  "id": "/groceries",
-  "start_url": "/groceries",
+  "id": "/",
+  "start_url": "/",
   "display": "fullscreen",
   "theme_color": "#000000",
   "orientation": "portrait-primary",
