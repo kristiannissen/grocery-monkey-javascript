@@ -3,6 +3,7 @@
  *
  */
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 // Custom components
 import Toast from "../components/toast";
 
@@ -71,7 +72,14 @@ const Groceries = () => {
 
   return (
     <div className="min-w-full">
-      <h1>Grocery List</h1>
+      <div className="flex flex-row">
+        <div className="basis-3/4">
+          <h1>Grocery List</h1>
+        </div>
+        <div className="basis-1/4 grid justify-items-end">
+          <Link to="/mealplan">Meal Plan</Link>
+        </div>
+      </div>
       <div className="min-w-full">
         {groceries.map((grocery) => (
           <div

@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./routes/home";
 import Groceries from "./routes/groceries";
 import Signin from "./routes/signin";
+import MealPlan from "./routes/mealplan";
 
 const App = () => {
   useEffect(() => {}, []);
@@ -23,6 +24,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/groceries" element={<Groceries />} />
+              <Route path="/mealplan" element={<MealPlan />} />
               <Route path="/signin" element={<Signin />} />
             </Routes>
           </div>
