@@ -18,11 +18,11 @@
       "sizes": "512x512"
     }
   ],
-  "id": "/",
-  "start_url": "/",
+  "id": "/groceries",
+  "start_url": "/groceries",
   "display": "fullscreen",
   "theme_color": "#000000",
   "orientation": "portrait-primary",
   "background_color": "#ffffff",
-  "scope": "."
+  "scope": "/groceries"
 }
