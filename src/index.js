@@ -42,8 +42,9 @@ render(<App />, document.getElementById("root"));
 // Learn more about service workers: https://cra.link/PWA
 // serviceWorkerRegistration.register();
 if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js", {scope: "/groceries"})
-    .then((reg) => console.log("SW running"))
+  navigator.serviceWorker
+    .register("./sw.js", { scope: "/groceries" })
+    .then((reg) => console.log("SW running"));
 }
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

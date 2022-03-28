@@ -14,10 +14,15 @@ const Groceries = () => {
   const [toast, showToast] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isDirty, setDirty] = useState(false);
 
   useEffect(() => {
     if (message !== "") showToast(true);
   }, [message]);
+
+  useEffect(() => {
+    console.log("is dirty", isDirty);
+  }, [isDirty]);
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
@@ -31,8 +36,8 @@ const Groceries = () => {
       let user = JSON.parse(localStorage.getItem("user"));
       user.groceries = groceries;
 
-      fetch(`${process.env.REACT_APP_DOMAIN}/groceries/${user.id}/update`, {
-        method: "PUT",
+      fetch(`${process.env.REACT_APP_DOMAIN}/groceries`, {
+        method: isDirty === true ? "PUT" : "POST",
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
@@ -44,6 +49,7 @@ const Groceries = () => {
         .then((data) => {
           setGroceries(data.groceries);
           localStorage.setItem("user", JSON.stringify(data));
+          setDirty(true);
         })
         .catch((error) => setMessage("Ouch! Something went wrong"));
     }
