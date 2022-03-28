@@ -1,0 +1,28 @@
+{
+  "short_name": "Grocery Monkey",
+  "name": "The sharable groceylist",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "assets/monkey.svg",
+      "type": "image/svg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/monkey.png",
+      "type": "image/svg",
+      "sizes": "512x512"
+    }
+  ],
+  "id": "/groceries",
+  "start_url": "/groceries",
+  "display": "fullscreen",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "scope": "/groceries"
+}
