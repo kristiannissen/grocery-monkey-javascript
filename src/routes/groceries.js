@@ -14,44 +14,20 @@ const Groceries = () => {
   const [toast, showToast] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isDirty, setDirty] = useState(false);
 
   useEffect(() => {
     if (message !== "") showToast(true);
   }, [message]);
 
   useEffect(() => {
-    console.log("is dirty", isDirty);
-  }, [isDirty]);
-
-  useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("user")));
-    setGroceries(JSON.parse(localStorage.getItem("user")).groceries);
+    // Initial data
+    let data = localStorage.getItem("groceries");
+    setGroceries(data ? JSON.parse(data) : []);
   }, []);
 
   useEffect(() => {
-    console.log("useEffect", groceries, loading);
+    localStorage.setItem("groceries", JSON.stringify(groceries));
     if (loading === true) {
-      let token = localStorage.getItem("token");
-      let user = JSON.parse(localStorage.getItem("user"));
-      user.groceries = groceries;
-
-      fetch(`${process.env.REACT_APP_DOMAIN}/groceries`, {
-        method: isDirty === true ? "PUT" : "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(user),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setGroceries(data.groceries);
-          localStorage.setItem("user", JSON.stringify(data));
-          setDirty(true);
-        })
-        .catch((error) => setMessage("Ouch! Something went wrong"));
     }
 
     return () => setLoading(false);

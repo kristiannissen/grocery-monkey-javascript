@@ -42,8 +42,6 @@ const Signin = () => {
         } else {
           // Save token
           localStorage.setItem("token", data.token);
-          // Save user
-          localStorage.setItem("user", JSON.stringify(data.groceries));
           // Redirect user
           navigate("/groceries");
         }
