@@ -10,10 +10,12 @@ import Toast from "../components/toast";
 const Groceries = () => {
   const [groceries, setGroceries] = useState([]);
   const [grocery, setGrocery] = useState({ name: "", id: "" });
-  const [user, setUser] = useState({});
   const [toast, showToast] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Token
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (message !== "") showToast(true);
@@ -27,7 +29,35 @@ const Groceries = () => {
 
   useEffect(() => {
     localStorage.setItem("groceries", JSON.stringify(groceries));
+    // Get the Uuid for the list, it if hasn't been set
+    // uuid = null
+    let uuid = localStorage.getItem("uuid");
+    let useruuid = localStorage.getItem("useruuid");
+
     if (loading === true) {
+      console.log("Loading", loading, groceries, uuid);
+      // Request method
+      let method = "PUT";
+      if (uuid === null) {
+        method = "POST";
+      }
+      // POST|PUT to store data
+      fetch(`${process.env.REACT_APP_DOMAIN}/groceries`, {
+        method: method,
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          useruuid: useruuid,
+          groceries: groceries,
+          uuid: uuid
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => localStorage.setItem("uuid", data.uuid))
+        .catch((err) => setMessage(err));
     }
 
     return () => setLoading(false);
