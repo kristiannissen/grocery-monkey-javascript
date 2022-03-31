@@ -35,7 +35,6 @@ const Groceries = () => {
     let useruuid = localStorage.getItem("useruuid");
 
     if (loading === true) {
-      console.log("Loading", loading, groceries, uuid);
       // Request method
       let method = "PUT";
       if (uuid === null) {
@@ -47,7 +46,7 @@ const Groceries = () => {
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({
           useruuid: useruuid,
@@ -61,12 +60,16 @@ const Groceries = () => {
     }
 
     return () => setLoading(false);
-  }, [groceries, loading]);
+  }, [groceries, loading, token]);
 
   const handleClick = () => {
-    setGroceries([...groceries, grocery]);
-    setGrocery({ name: "", id: "" });
-    setLoading(true);
+    if (grocery.name === "") {
+        setMessage("Input field cannot be empty")
+    } else {
+        setGroceries([...groceries, grocery]);
+        setGrocery({ name: "", id: "" });
+        setLoading(true);
+    }
   };
 
   const handleChange = (e) => {
