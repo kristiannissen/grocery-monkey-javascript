@@ -33,6 +33,8 @@ const Groceries = () => {
     // uuid = null
     let uuid = localStorage.getItem("uuid");
     let useruuid = localStorage.getItem("useruuid");
+    // Keep track of subscribers
+    let subscribers = localStorage.getItem("subscribers") || "[]";
 
     if (loading === true) {
       // Request method
@@ -46,16 +48,20 @@ const Groceries = () => {
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           useruuid: useruuid,
           groceries: groceries,
-          uuid: uuid
+          uuid: uuid,
+          subscribers: JSON.parse(subscribers),
         }),
       })
         .then((response) => response.json())
-        .then((data) => localStorage.setItem("uuid", data.uuid))
+        .then((data) => {
+          localStorage.setItem("uuid", data.uuid);
+          localStorage.setItem("subscribers", JSON.stringify(data.subscribers));
+        })
         .catch((err) => setMessage(err.text));
     }
 
@@ -64,11 +70,11 @@ const Groceries = () => {
 
   const handleClick = () => {
     if (grocery.name === "") {
-        setMessage("Input field cannot be empty")
+      setMessage("Input field cannot be empty");
     } else {
-        setGroceries([...groceries, grocery]);
-        setGrocery({ name: "", id: "" });
-        setLoading(true);
+      setGroceries([...groceries, grocery]);
+      setGrocery({ name: "", id: "" });
+      setLoading(true);
     }
   };
 

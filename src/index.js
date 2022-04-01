@@ -46,11 +46,11 @@ if ("serviceWorker" in navigator) {
     .register("./sw.js", { scope: "/groceries" })
     .then((reg) => console.log("SW running"));
 
-    navigator.serviceWorker.ready.then(reg => {
-        reg.sync.getTags().then(tag => {
-            console.log("sync", tag)
-        })
-    })
+  navigator.serviceWorker.ready.then((reg) => {
+    reg.sync.getTags().then((tag) => {
+      console.log("sync", tag);
+    });
+  });
 }
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
