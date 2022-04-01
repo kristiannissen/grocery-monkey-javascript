@@ -47,7 +47,7 @@ const Signin = () => {
           navigate("/groceries");
         }
       })
-      .catch((error) => setMessage("Unable to sign in!"));
+      .catch((error) => setMessage("Unable to sign in! " + error.text));
   };
 
   return (

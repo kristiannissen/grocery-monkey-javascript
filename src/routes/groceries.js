@@ -56,7 +56,7 @@ const Groceries = () => {
       })
         .then((response) => response.json())
         .then((data) => localStorage.setItem("uuid", data.uuid))
-        .catch((err) => setMessage(err));
+        .catch((err) => setMessage(err.text));
     }
 
     return () => setLoading(false);

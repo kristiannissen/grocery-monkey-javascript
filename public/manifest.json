@@ -20,7 +20,7 @@
   ],
   "id": "/groceries",
   "start_url": "/groceries",
-  "display": "fullscreen",
+  "display": "standalone",
   "theme_color": "#000000",
   "orientation": "portrait-primary",
   "background_color": "#ffffff",

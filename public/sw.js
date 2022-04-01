@@ -9,3 +9,12 @@ self.addEventListener("install", (event) => {
     })
   );
 });
+
+async function sendMessage() {
+    console.log("sending")
+}
+
+// Background sync
+self.addEventListener("sync", (event) => {
+    event.waitUntil(sendMessages())
+})
