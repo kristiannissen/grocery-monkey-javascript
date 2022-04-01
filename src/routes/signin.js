@@ -2,15 +2,18 @@
  * @file Signin
  *
  */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 // Custom components
 import Toast from "../components/toast";
+import {AuthContext} from "../context/auth";
 
 const Signin = () => {
   const [username, setUsername] = useState("");
   const [toast, showToast] = useState(false);
   const [message, setMessage] = useState("");
+  const [auth, setAuth] = useContext(AuthContext)
+
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -43,6 +46,7 @@ const Signin = () => {
           // Save token
           localStorage.setItem("token", data.token);
           localStorage.setItem("useruuid", data.uuid);
+          setAuth({token: data.token, hasToken: true})
           // Redirect user
           navigate("/groceries");
         }
