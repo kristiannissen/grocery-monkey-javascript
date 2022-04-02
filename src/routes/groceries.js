@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 // Custom components
 import Toast from "../components/toast";
+import { useAuth } from "../context/auth";
 
 const Groceries = () => {
   const [groceries, setGroceries] = useState([]);
@@ -13,9 +14,13 @@ const Groceries = () => {
   const [toast, showToast] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const auth = useAuth();
+  const [token, setToken] = useState("");
 
   // Token
-  const token = localStorage.getItem("token");
+  useEffect(() => {
+    setToken(auth.getToken());
+  }, []);
 
   useEffect(() => {
     if (message !== "") showToast(true);

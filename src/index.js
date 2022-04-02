@@ -2,7 +2,7 @@
  *
  */
 import { render } from "react-dom";
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/index.css";
 // import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
@@ -12,47 +12,71 @@ import Home from "./routes/home";
 import Groceries from "./routes/groceries";
 import Signin from "./routes/signin";
 import MealPlan from "./routes/mealplan";
-import {AuthContext, AuthState} from "./context/auth"
+import { AuthContext, AuthState, useAuth } from "./context/auth";
 
-const AuthProvider = ({children}) => {
-  const [auth, setAuth] = useState(AuthState)
-  return <AuthContext.Provider value={[auth, setAuth]}>{children}</AuthContext.Provider>
-}
-const useAuth = () => {
-  return useContext(AuthContext)
-}
+const AuthProvider = ({ children }) => {
+  const [auth, setAuth] = useState(AuthState);
 
-const RequireAuth = ({children}) => {
-  const [auth] = useAuth()
-  let navigate = useNavigate()
+  let signin = (token) => {
+    localStorage.setItem("token", token);
+    setAuth({ token: token });
+  };
+
+  let hasToken = () => {
+    let t = localStorage.getItem("token");
+    return t ? true : false;
+  };
+
+  let getToken = () => auth.token;
+
+  let val = { auth, signin, hasToken, getToken };
+
+  return <AuthContext.Provider value={val}>{children}</AuthContext.Provider>;
+};
+
+const RequireAuth = ({ children }) => {
+  const auth = useAuth();
+  let navigate = useNavigate();
 
   useEffect(() => {
-    if (auth.hasToken !== true) {
-      navigate("/signin")
+    if (auth.hasToken() !== true) {
+      navigate("/signin");
     }
-  })
+  });
 
-  return children
-}
+  return children;
+};
 
 const App = () => {
-
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="min-w-full px-2">
       <React.StrictMode>
         <BrowserRouter>
           <div className="container">
-          <AuthProvider>
-            <Routes>
-              <Route path="/" element={<Home />} />
-                <Route path="/groceries" element={<RequireAuth><Groceries /></RequireAuth>} />
-                <Route path="/mealplan" element={<RequireAuth><MealPlan /></RequireAuth>} />
-              <Route path="/signin" element={<Signin />} />
-            </Routes>
-          </AuthProvider>
+            <AuthProvider>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route
+                  path="/groceries"
+                  element={
+                    <RequireAuth>
+                      <Groceries />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/mealplan"
+                  element={
+                    <RequireAuth>
+                      <MealPlan />
+                    </RequireAuth>
+                  }
+                />
+                <Route path="/signin" element={<Signin />} />
+              </Routes>
+            </AuthProvider>
           </div>
         </BrowserRouter>
       </React.StrictMode>

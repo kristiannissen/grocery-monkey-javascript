@@ -1,11 +1,14 @@
 /**
  *
  */
-import { createContext } from "react"
+import { createContext, useContext } from "react";
 
 export const AuthState = {
   token: "",
-  hasToken: false
-}
+};
 
-export const AuthContext = createContext(AuthState)
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
+
+export const AuthContext = createContext(AuthState);
