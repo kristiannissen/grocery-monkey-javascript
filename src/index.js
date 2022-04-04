@@ -12,6 +12,7 @@ import Home from "./routes/home";
 import Groceries from "./routes/groceries";
 import Signin from "./routes/signin";
 import MealPlan from "./routes/mealplan";
+import Share from "./routes/share";
 import { AuthContext, AuthState, useAuth } from "./context/auth";
 
 const AuthProvider = ({ children }) => {
@@ -71,6 +72,14 @@ const App = () => {
                   element={
                     <RequireAuth>
                       <MealPlan />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/share"
+                  element={
+                    <RequireAuth>
+                      <Share />
                     </RequireAuth>
                   }
                 />

@@ -20,7 +20,7 @@ const Groceries = () => {
   // Token
   useEffect(() => {
     setToken(auth.getToken());
-  }, []);
+  }, [auth]);
 
   useEffect(() => {
     if (message !== "") showToast(true);
@@ -153,6 +153,9 @@ const Groceries = () => {
           >
             Add
           </button>
+          <Link to="/share" className="btn-primary mt-auto">
+            Share
+          </Link>
         </div>
       </div>
       <Toast show={toast} message={message} />
