@@ -146,7 +146,7 @@ const Groceries = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="flex form_group">
+        <div className="flex form_group button-group">
           <button
             className="btn-primary mt-auto"
             onClick={(e) => handleClick(e)}
