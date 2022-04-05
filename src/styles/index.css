@@ -9,10 +9,9 @@ html {
   @apply bg-lime-600 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded focus:outline-none;
 }
 a.btn-primary {
-    text-decoration: none;
+  text-decoration: none;
 }
 .button-group {
-
 }
 .field__text {
   @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none;
@@ -34,6 +33,9 @@ a.btn-primary {
 }
 .alert__success {
   @apply bg-green-100 border-green-500 text-green-500;
+}
+.alert_close {
+  @apply fill-current h-6 w-6 ml-1;
 }
 .comp_list {
   @apply flex flex-row;

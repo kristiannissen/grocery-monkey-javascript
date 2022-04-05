@@ -39,7 +39,7 @@ const Groceries = () => {
     let uuid = localStorage.getItem("uuid");
     let useruuid = localStorage.getItem("useruuid");
     // Keep track of subscribers
-    let subscribers = localStorage.getItem("subscribers") || "[]";
+    let subscribers = localStorage.getItem("subscribers") || `[]`;
 
     if (loading === true) {
       // Request method
@@ -62,12 +62,17 @@ const Groceries = () => {
           subscribers: JSON.parse(subscribers),
         }),
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (response.status >= 200 && response.status <= 299) {
+            return response.json();
+          }
+          throw Error(response.statusText);
+        })
         .then((data) => {
           localStorage.setItem("uuid", data.uuid);
           localStorage.setItem("subscribers", JSON.stringify(data.subscribers));
         })
-        .catch((err) => setMessage(err.text));
+        .catch((err) => setMessage(err));
     }
 
     return () => setLoading(false);
@@ -160,7 +165,11 @@ const Groceries = () => {
           )}
         </div>
       </div>
-      <Toast show={toast} message={message} />
+      <Toast
+        show={toast}
+        message={message}
+        onToggle={(e) => showToast(false)}
+      />
     </div>
   );
 };
