@@ -4,17 +4,21 @@
 import ReactDOM from "react-dom";
 import { useEffect, useState } from "react";
 
-const Toast = ({ show, message }) => {
+const Toast = ({ show, message, type }) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
     setIsBrowser(true);
   }, [show]);
 
+  const hide = (e) => {
+    console.log("use Ref")
+  }
+
   const content = show ? (
-    <div className="alert__warning">
+    <div className={type ? `alert alert__${type}` : `alert`}>
       <span className="block sm:inline">{message}</span>
-      <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+      <span className="absolute top-0 bottom-0 right-0 px-4 py-3" onClick={(e) => hide(e)}>
         <svg
           className="fill-current h-6 w-6 text-red-500 ml-1"
           role="button"

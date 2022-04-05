@@ -26,8 +26,14 @@ a.btn-primary {
 .form_group {
   @apply py-1.5;
 }
+.alert {
+  @apply border px-4 py-3 mx-4 rounded absolute bottom-4 w-11/12;
+}
 .alert__warning {
-  @apply bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded absolute bottom-4 w-11/12;
+  @apply bg-red-100 border-red-400 text-red-700;
+}
+.alert__success {
+  @apply bg-green-100 border-green-500 text-green-500;
 }
 .comp_list {
   @apply flex flex-row;

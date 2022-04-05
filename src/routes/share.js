@@ -9,6 +9,7 @@ const Share = () => {
   const [uuid, setUuid] = useState("");
   const [toast, showToast] = useState(false);
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("info")
 
   useEffect(() => {
     let d = localStorage.getItem("uuid");
@@ -39,9 +40,11 @@ const Share = () => {
             .then(
               () => {
                 setMessage("URL copied to your clipboard");
+                setMessageType("success")
               },
               () => {
                 setMessage("Could not use the clipboard");
+                setMessageType("warning")
               }
             );
         }
@@ -56,7 +59,7 @@ const Share = () => {
         <button className="btn-primary" onClick={(e) => doShare(e)}>
           Share
         </button>
-        <Toast show={toast} message={message} />
+        <Toast show={toast} message={message} type={messageType} />
       </div>
     </div>
   );
