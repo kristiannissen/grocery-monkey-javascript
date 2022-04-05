@@ -153,9 +153,11 @@ const Groceries = () => {
           >
             Add
           </button>
-          <Link to="/share" className="btn-primary mt-auto">
-            Share
-          </Link>
+          {groceries.length > 0 && (
+            <Link to="/share" className="btn-primary mt-auto">
+              Share
+            </Link>
+          )}
         </div>
       </div>
       <Toast show={toast} message={message} />
