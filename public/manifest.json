@@ -3,17 +3,22 @@
   "name": "The sharable groceylist",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "assets/monkey__icon.svg",
+      "sizes": "16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "assets/monkey.svg",
+      "src": "assets/monkey__64x64.svg",
+      "type": "image/svg",
+      "sizes": "64x64"
+    },
+    {
+      "src": "assets/monkey__192x192.svg",
       "type": "image/svg",
       "sizes": "192x192"
     },
     {
-      "src": "assets/monkey.png",
+      "src": "assets/monkey__512x512.png",
       "type": "image/svg",
       "sizes": "512x512"
     }

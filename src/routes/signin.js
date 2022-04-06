@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 // Custom components
 import Toast from "../components/toast";
 import { useAuth } from "../context/auth";
+import { helpFetch } from "../helpers/";
 
 const Signin = () => {
   const [username, setUsername] = useState("");
@@ -30,30 +31,15 @@ const Signin = () => {
       username: username,
     };
     // Post the username to get a jwt token
-    fetch(`${process.env.REACT_APP_DOMAIN}/authenticate`, {
-      method: "POST",
-      mode: "cors",
-      body: JSON.stringify(user),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Store the user
-        if (data.token === "") {
-          setMessage("Invalid token");
-        } else {
-          // Save token
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("useruuid", data.uuid);
-          // User sign in
-          auth.signin(data.token);
-          // Redirect user
-          navigate("/groceries");
-        }
+    helpFetch("authenticate", "POST", user)
+      .then((resp) => {
+        localStorage.setItem("token", resp.token);
+        localStorage.setItem("useruuid", resp.useruuid);
+
+        auth.signin(resp.token);
+        navigate("/groceries");
       })
-      .catch((error) => setMessage("Unable to sign in! " + error.text));
+      .catch((err) => setMessage(err.message));
   };
 
   return (
