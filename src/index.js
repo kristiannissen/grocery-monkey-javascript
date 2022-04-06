@@ -5,7 +5,7 @@ import { render } from "react-dom";
 import React, { useEffect, useState } from "react";
 import "./styles/index.css";
 // import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import reportWebVitals from "./reportWebVitals";
+// import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 import Home from "./routes/home";
