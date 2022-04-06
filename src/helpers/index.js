@@ -27,22 +27,35 @@ const helpFetch = async (URI, method, data, token) => {
     Object.assign(rH, { Authorization: "Bearer " + token });
   }
 
-  return fetch(`${process.env.REACT_APP_DOMAIN}/${URI}`, {
+  let options = {
     method: method,
-    body: JSON.stringify(data),
     mode: "cors",
     headers: rH,
-  }).then((resp) => {
-    if (resp.status >= 200 && resp.status <= 299) {
-      return resp.json();
+  };
+
+  if (["POST", "PUT", "DELETE"].includes(method.toUpperCase())) {
+    Object.assign(options, { body: JSON.stringify(data) });
+  } else {
+    URI +=
+      "?" +
+      Object.keys(data).map((k) => {
+        return `${k}=${encodeURIComponent(data[k])}`;
+      });
+  }
+
+  return fetch(`${process.env.REACT_APP_DOMAIN}/${URI}`, options).then(
+    (resp) => {
+      if (resp.status >= 200 && resp.status <= 299) {
+        return resp.json();
+      }
+      switch (resp.status) {
+        case 401:
+          throw new UnauthorizedError(resp.statusText);
+        default:
+          throw new RequestError(resp.statusText);
+      }
     }
-    switch (resp.status) {
-      case 401:
-        throw new UnauthorizedError(resp.statusText);
-      default:
-        throw new RequestError(resp.statusText);
-    }
-  });
+  );
 };
 
 export { helpFetch };

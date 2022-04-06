@@ -20,7 +20,7 @@ const Groceries = () => {
 
   // Token
   useEffect(() => {
-    console.log(auth.getToken());
+    // console.log(auth.getToken());
     setToken(auth.getToken());
   }, [auth]);
 
@@ -30,9 +30,16 @@ const Groceries = () => {
 
   useEffect(() => {
     // Initial data
-    let data = localStorage.getItem("groceries");
-    setGroceries(data ? JSON.parse(data) : []);
-  }, []);
+    /* let data = localStorage.getItem("groceries");
+    setGroceries(data ? JSON.parse(data) : []); */
+    // Check if uuid exists
+    let uuid = localStorage.getItem("uuid");
+    if (uuid && groceries.length === 0 && token.length > 0) {
+      helpFetch("groceries", "GET", { uuid: uuid }, token).then((resp) =>
+        setGroceries(resp.groceries)
+      );
+    }
+  }, [groceries, token]);
 
   useEffect(() => {
     if (loading === true) {
@@ -46,10 +53,14 @@ const Groceries = () => {
       // Make the request
       helpFetch("groceries", method, body, token)
         .then((resp) => {
-          localStorage.setItem("groceries", JSON.stringify(resp.groceries));
-          localStorage.setItem("subscribers", JSON.stringify(resp.subscribers));
+          setGroceries(resp.groceries);
+          localStorage.setItem("uuid", resp.uuid);
         })
         .catch((err) => setMessage(err.message));
+      /*
+        navigator.serviceWorker.ready.then((reg) => {
+            reg.sync.register("run-forest")
+        })*/
     }
     return () => setLoading(false);
   }, [groceries, loading, token]);
