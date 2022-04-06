@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
     return t ? true : false;
   };
 
-  let getToken = () => auth.token;
+  let getToken = () => localStorage.getItem("token");
 
   let val = { auth, signin, hasToken, getToken };
 

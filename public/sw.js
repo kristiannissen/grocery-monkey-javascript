@@ -1,20 +1,18 @@
 /**
  *
  */
+const CACHE_KEY = "v1";
+
+const assets = ["/groceries", "/static/js/bundle.js"];
+
 self.addEventListener("install", (event) => {
-  console.log("install");
   event.waitUntil(
-    caches.open("v1").then((cache) => {
-      return cache.addAll(["/groceries"]);
+    caches.open(CACHE_KEY).then((cache) => {
+      return cache.addAll(assets);
     })
   );
 });
 
-async function sendMessage() {
-  console.log("sending");
-}
-
-// Background sync
-self.addEventListener("sync", (event) => {
-  event.waitUntil(sendMessages());
-});
+/**
+ *
+ */

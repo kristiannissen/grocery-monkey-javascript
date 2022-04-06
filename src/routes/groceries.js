@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 // Custom components
 import Toast from "../components/toast";
 import { useAuth } from "../context/auth";
+import { helpFetch } from "../helpers/";
 
 const Groceries = () => {
   const [groceries, setGroceries] = useState([]);
@@ -19,6 +20,7 @@ const Groceries = () => {
 
   // Token
   useEffect(() => {
+    console.log(auth.getToken());
     setToken(auth.getToken());
   }, [auth]);
 
@@ -33,48 +35,22 @@ const Groceries = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("groceries", JSON.stringify(groceries));
-    // Get the Uuid for the list, it if hasn't been set
-    // uuid = null
-    let uuid = localStorage.getItem("uuid");
-    let useruuid = localStorage.getItem("useruuid");
-    // Keep track of subscribers
-    let subscribers = localStorage.getItem("subscribers") || `[]`;
-
     if (loading === true) {
-      // Request method
-      let method = "PUT";
-      if (uuid === null) {
-        method = "POST";
-      }
-      // POST|PUT to store data
-      fetch(`${process.env.REACT_APP_DOMAIN}/groceries`, {
-        method: method,
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          useruuid: useruuid,
-          groceries: groceries,
-          uuid: uuid,
-          subscribers: JSON.parse(subscribers),
-        }),
-      })
-        .then((response) => {
-          if (response.status >= 200 && response.status <= 299) {
-            return response.json();
-          }
-          throw Error(response.statusText);
+      let body = {
+        useruuid: localStorage.getItem("useruuid"),
+        groceries: groceries,
+        uuid: localStorage.getItem("uuid"),
+        subscribers: JSON.parse(localStorage.getItem("subscribers") || "[]"),
+      };
+      let method = localStorage.getItem("uuid") ? "PUT" : "POST";
+      // Make the request
+      helpFetch("groceries", method, body, token)
+        .then((resp) => {
+          localStorage.setItem("groceries", JSON.stringify(resp.groceries));
+          localStorage.setItem("subscribers", JSON.stringify(resp.subscribers));
         })
-        .then((data) => {
-          localStorage.setItem("uuid", data.uuid);
-          localStorage.setItem("subscribers", JSON.stringify(data.subscribers));
-        })
-        .catch((err) => setMessage(err));
+        .catch((err) => setMessage(err.message));
     }
-
     return () => setLoading(false);
   }, [groceries, loading, token]);
 

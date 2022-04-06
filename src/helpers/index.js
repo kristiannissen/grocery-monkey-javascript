@@ -4,7 +4,7 @@
  * @param {object} data - JS Object to post
  * @param {string} token - JWT token
  */
-const rH = new Headers();
+const rH = {};
 
 class RequestError extends Error {
   constructor(message, status, text) {
@@ -13,10 +13,18 @@ class RequestError extends Error {
   }
 }
 
+class UnauthorizedError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "Authorization Error";
+  }
+}
+
 const helpFetch = async (URI, method, data, token) => {
-  rH.append("Content-Type", "application/json");
+  Object.assign(rH, { "Content-Type": "application/json" });
+
   if (token !== "") {
-    rH.append("Authorization", `Bearer ${token}`);
+    Object.assign(rH, { Authorization: "Bearer " + token });
   }
 
   return fetch(`${process.env.REACT_APP_DOMAIN}/${URI}`, {
@@ -28,7 +36,12 @@ const helpFetch = async (URI, method, data, token) => {
     if (resp.status >= 200 && resp.status <= 299) {
       return resp.json();
     }
-    throw new RequestError(resp.statusText);
+    switch (resp.status) {
+      case 401:
+        throw new UnauthorizedError(resp.statusText);
+      default:
+        throw new RequestError(resp.statusText);
+    }
   });
 };
 
