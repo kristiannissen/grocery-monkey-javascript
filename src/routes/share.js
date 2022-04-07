@@ -3,6 +3,7 @@
  *
  */
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Toast from "../components/toast";
 
 const Share = () => {
@@ -55,7 +56,7 @@ const Share = () => {
 
   return (
     <div>
-      Share your groceries
+      Share your groceries <Link to="/groceries">Groceries</Link>
       <div>
         <button className="btn-primary" onClick={(e) => doShare(e)}>
           Share

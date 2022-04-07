@@ -46,7 +46,7 @@ const cached = (request) =>
  */
 self.addEventListener("fetch", (event) => {
   // Store in cache
-  if (event.request.url.includes("/api/")) {
+  if (event.request.url.includes("/api/groceries")) {
     event.respondWith(
       network(event.request).catch(() => cached(event.request))
     );
