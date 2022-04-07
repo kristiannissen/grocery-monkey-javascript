@@ -47,10 +47,12 @@ const cached = (request) =>
 self.addEventListener("fetch", (event) => {
   // Store in cache
   if (event.request.url.includes("/api/groceries")) {
+    const r = event.request.clone()
+
     event.respondWith(
       network(event.request).catch(() => cached(event.request))
     );
-    event.waitUntil(update(event.request));
+    event.waitUntil(update(r));
   }
 });
 
