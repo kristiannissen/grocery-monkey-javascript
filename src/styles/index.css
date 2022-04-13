@@ -3,7 +3,6 @@
 
 /* Apply */
 html {
-  @apply prose;
 }
 .btn-primary {
   @apply bg-lime-600 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded focus:outline-none;

@@ -1,7 +1,7 @@
 /**
  *
  */
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import React, { useEffect, useState } from "react";
 import "./styles/index.css";
 // import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
@@ -94,7 +94,9 @@ const App = () => {
   );
 };
 
-render(<App />, document.getElementById("root"));
+const appRoot = document.getElementById("app-root");
+const root = createRoot(appRoot);
+root.render(<App />);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
@@ -102,7 +104,7 @@ render(<App />, document.getElementById("root"));
 // serviceWorkerRegistration.register();
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register("./sw.js", { scope: "/groceries" })
+    .register("service-worker.js", { scope: "/groceries" })
     .then((reg) => console.log("SW running"));
 }
 // If you want to start measuring performance in your app, pass a function
