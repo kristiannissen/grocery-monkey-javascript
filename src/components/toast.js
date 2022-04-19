@@ -2,7 +2,7 @@
  *
  */
 import ReactDOM from "react-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Toast = ({ show, message, type, onToggle }) => {
   const [isBrowser, setIsBrowser] = useState(false);

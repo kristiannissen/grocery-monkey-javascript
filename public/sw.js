@@ -47,7 +47,7 @@ const cached = (request) =>
 self.addEventListener("fetch", (event) => {
   // Store in cache
   if (event.request.url.includes("/api/groceries")) {
-    const r = event.request.clone()
+    const r = event.request.clone();
 
     event.respondWith(
       network(event.request).catch(() => cached(event.request))

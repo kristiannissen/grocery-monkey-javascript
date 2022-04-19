@@ -2,16 +2,18 @@
  *
  */
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-import Header from "./components/header";
-// import './App.css';
+import { Layout, Home } from "./routes/";
 
 const App = () => {
   return (
-    <div className="">
-      <Header title="Hello Kitty" />
-      <Outlet />
+    <div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+        </Route>
+      </Routes>
     </div>
   );
 };
