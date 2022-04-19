@@ -12,3 +12,16 @@ const elm = document.getElementById("app-root");
 const root = createRoot(elm);
 
 root.render(<ErrorBoundary><BrowserRouter><App /></BrowserRouter></ErrorBoundary>);
+
+/**
+ * Service Worker
+ */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+    .register("service-worker.js")
+    .then((reg) => {
+      console.log("SW reg: ", reg)
+    }).catch((err) => console.log("SW reg error: ", err))
+  })
+}
