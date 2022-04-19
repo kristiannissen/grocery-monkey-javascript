@@ -2,19 +2,31 @@
  *
  */
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
-import { Layout, Home } from "./routes/";
+import { Layout, Home, NoMatch } from "./routes/";
+
+const Groceries = React.lazy(() => import("./routes/groceries"))
+const MealPlan = React.lazy(() => import("./routes/mealplan"))
 
 const App = () => {
   return (
-    <div>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="groceries" element={
+            <React.Suspense fallback={<>...</>}>
+              <Groceries />
+            </React.Suspense>
+          } />
+          <Route path="mealplan" element={
+            <React.Suspense fallback={<>...</>}>
+              <MealPlan />
+            </React.Suspense>
+          } />
+          <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
-    </div>
   );
 };
 
