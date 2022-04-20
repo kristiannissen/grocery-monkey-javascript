@@ -4,8 +4,9 @@
 import { createRoot } from "react-dom/client";
 import React, { StrictMode } from "react";
 import { BrowserRouter } from "react-router-dom";
-
+// TODO: add index.js to context/
 import { ShellContext, ShellState } from "./context/shell";
+import { AuthContext, AuthState, AuthProvider } from "./context/auth";
 
 import App from "./app";
 import ErrorBoundary from "./errorboundary";
@@ -19,7 +20,9 @@ root.render(
   <ErrorBoundary>
     <BrowserRouter>
       <ShellContext.Provider value={ShellState}>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </ShellContext.Provider>
     </BrowserRouter>
   </ErrorBoundary>

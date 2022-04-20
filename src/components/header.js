@@ -22,6 +22,9 @@ const Header = () => {
           <Link to="/mealplan" className="header__nav_link">
             Mealplan
           </Link>
+          <Link to="/signin" className="header__nav_link">
+            Signin
+          </Link>
         </nav>
       </header>
     );

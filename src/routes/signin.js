@@ -4,18 +4,19 @@
  */
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./../context/auth";
 
 const Signin = () => {
   const [token, setToken] = useState("");
+  const auth = useAuth();
   let navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("Signin: ", token);
-  }, [token]);
+  useEffect(() => {}, [token]);
 
   const handleClick = (evnt) => {
     let _t = new Date().getTime().toString();
-    console.log("signin token: ", _t);
+    setToken(_t);
+    auth.signin(_t).then(() => navigate("/"));
   };
 
   return (
