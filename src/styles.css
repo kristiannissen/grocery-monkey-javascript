@@ -6,5 +6,8 @@
  * Shell
  */
 #app__shell_header {
-  @apply flex h-11 drop-shadow-md;
+  @apply flex h-11 drop-shadow-md bg-purple-900 text-white;
+}
+#app__shell_content {
+  @apply flex mx-1;
 }

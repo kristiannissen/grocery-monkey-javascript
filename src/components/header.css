@@ -1,0 +1,11 @@
+.header {
+  @apply flex flex-row justify-between items-center px-0.5 w-full;
+}
+.header__title {
+  @apply basis-1/4 font-black font-serif;
+}
+.header__nav {
+  @apply basis-1/2 grow flex justify-around;
+}
+.header__nav_link {
+}
