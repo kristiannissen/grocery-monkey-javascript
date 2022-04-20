@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="dark">
   <head>
     <meta charset="utf-8" />
     <title><%= htmlWebpackPlugin.options.title %></title>
@@ -9,12 +9,24 @@
       content="width=device-width, initial-scale=1,
     viewport-fit=cover"
     />
+    <script>
+      (function (ns, undefined) {
+        ns.components = {
+          header: "app__shell_header",
+          root: "app__shell_content",
+          dialog: "app__shell_dialog",
+        };
+        ns.theme = "dark";
+      })((window.ns = window.ns || {}));
+    </script>
   </head>
   <body>
     <div class="container mx-auto">
-      <div id="app-root"></div>
-      <!-- Portal //-->
-      <div id="app-dialog"></div>
+      <div id="app__shell">
+        <div id="app__shell_header"></div>
+        <div id="app__shell_content"></div>
+        <div id="app__shell_dialog"></div>
+      </div>
     </div>
   </body>
 </html>

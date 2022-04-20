@@ -1,5 +1,5 @@
-import React from "react"
+import React from "react";
 
 const NoMatch = () => <div>Outch!</div>;
 
-export default NoMatch
+export default NoMatch;

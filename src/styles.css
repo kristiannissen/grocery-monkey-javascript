@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Shell
+ */
+#app__shell_header {
+  @apply flex h-11 drop-shadow-md;
+}

@@ -6,7 +6,7 @@ module.exports = (env) => {
     mode: "development",
     entry: {
       index: "./src/index.js",
-      "service-worker": "./src/service-worker.js"
+      "service-worker": "./src/service-worker.js",
     },
     output: {
       filename: "[name].js",

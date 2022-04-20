@@ -5,17 +5,15 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 
+import "./layout.css";
+
+import { Header } from "./../components/";
+
 const Layout = () => {
   return (
-    <div>
-      <header>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/groceries">Groceries</Link>
-          <Link to="/mealplan">Mealplan</Link>
-        </nav>
-      </header>
-      <main>
+    <div className="">
+      <Header />
+      <main className="">
         <Outlet />
       </main>
     </div>
