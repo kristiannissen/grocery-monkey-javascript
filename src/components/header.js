@@ -19,9 +19,6 @@ const Header = () => {
           <Link to="/" className="header__nav_link">
             Home
           </Link>
-          <Link to="/groceries" className="header__nav_link">
-            Groceries
-          </Link>
           <Link to="/mealplan" className="header__nav_link">
             Mealplan
           </Link>

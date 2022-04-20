@@ -4,32 +4,31 @@
 import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
-import { Layout, Home, NoMatch } from "./routes/";
+import {
+  Layout,
+  Home,
+  NoMatch,
+  Groceries,
+  RequireAuth,
+  Signin,
+} from "./routes/";
 
-const Groceries = React.lazy(() => import("./routes/groceries"));
 const MealPlan = React.lazy(() => import("./routes/mealplan"));
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route
-          path="groceries"
-          element={
-            <React.Suspense fallback={<>...</>}>
-              <Groceries />
-            </React.Suspense>
-          }
-        />
+        <Route index element={<RequireAuth element={<Groceries />} />} />
         <Route
           path="mealplan"
           element={
             <React.Suspense fallback={<>...</>}>
-              <MealPlan />
+              <RequireAuth element={<MealPlan />} />
             </React.Suspense>
           }
         />
+        <Route path="signin" element={<Signin />} />
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
