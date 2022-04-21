@@ -3,7 +3,7 @@
  */
 import { createRoot } from "react-dom/client";
 import React, { StrictMode } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 // TODO: add index.js to context/
 import { ShellContext, ShellState } from "./context/shell";
 import { AuthContext, AuthState, AuthProvider } from "./context/auth";
@@ -18,13 +18,13 @@ const root = createRoot(elm);
 
 root.render(
   <ErrorBoundary>
-    <BrowserRouter>
+    <HashRouter>
       <ShellContext.Provider value={ShellState}>
         <AuthProvider>
           <App />
         </AuthProvider>
       </ShellContext.Provider>
-    </BrowserRouter>
+    </HashRouter>
   </ErrorBoundary>
 );
 

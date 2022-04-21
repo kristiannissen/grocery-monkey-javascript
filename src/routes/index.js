@@ -8,3 +8,4 @@ export { default as NoMatch } from "./nomatch";
 export { default as RequireAuth } from "./requireauth";
 export { default as Groceries } from "./groceries";
 export { default as Signin } from "./signin";
+export { default as Signup } from "./signup";

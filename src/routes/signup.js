@@ -5,19 +5,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "./../context/auth";
-import { Toast } from "./../components";
 
 import "./signin.css";
 
-const Signin = () => {
+const Signup = () => {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({ username: "", password: "" });
-  const [toast, setToast] = useState({
-    show: true,
-    message: "Hello Kitty",
-    type: "info",
-    onToggle: () => setToast(false),
-  });
   const auth = useAuth();
   let navigate = useNavigate();
 
@@ -65,12 +58,11 @@ const Signin = () => {
           <button className="btn__secondary">Cancel</button>
         </div>
         <div className="form__group">
-          <Link to="/signup">Signup</Link>
+          <Link to="/signin">Signin</Link>
         </div>
       </form>
-      <Toast {...toast} />
     </div>
   );
 };
 
-export default Signin;
+export default Signup;

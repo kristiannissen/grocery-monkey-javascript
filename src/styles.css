@@ -16,3 +16,6 @@
   @apply flex mx-1;
   height: calc(var(--viewHeight) - 44px);
 }
+#app__shell_dialog {
+  @apply fixed bottom-0 h-11 w-full;
+}

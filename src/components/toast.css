@@ -1,0 +1,17 @@
+.alert {
+  @apply rounded bg-purple-400 flex w-9/12 ml-1 px-2 py-2;
+}
+.alert__warning {
+  @apply bg-pink-500 text-white font-bold;
+}
+.alert__info {
+  @apply bg-stone-900 text-white font-bold;
+}
+.alert__message {
+  @apply basis-4/5;
+}
+.alert__btn_close {
+  @apply basis-1/5;
+}
+.alert__btn_close > button {
+}
