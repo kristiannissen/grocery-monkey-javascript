@@ -1,3 +1,7 @@
+:root {
+  --viewHeight: 100vh;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,4 +14,5 @@
 }
 #app__shell_content {
   @apply flex mx-1;
+  height: calc(var(--viewHeight) - 44px);
 }
