@@ -1,0 +1,13 @@
+.form__container {
+  @apply flex mx-auto;
+}
+.form__group {
+  @apply py-1;
+}
+.form__group label {
+  @apply block text-sm;
+}
+.form__group input[type="text"],
+.form__group input[type="password"] {
+  @apply border p-1;
+}

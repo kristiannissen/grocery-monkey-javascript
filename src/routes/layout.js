@@ -11,12 +11,12 @@ import { Header } from "./../components/";
 
 const Layout = () => {
   return (
-    <div className="">
+    <>
       <Header />
-      <main className="">
+      <main className="content">
         <Outlet />
       </main>
-    </div>
+    </>
   );
 };
 
