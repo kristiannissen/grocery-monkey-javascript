@@ -7,14 +7,14 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "./../context/auth";
 import { Toast } from "./../components";
 
-import "./signin.css";
+import "./../css/forms.css";
 
 const Signin = () => {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({ username: "", password: "" });
   const [toast, setToast] = useState({
     show: false,
-    message: "Hello Kitty",
+    message: "",
     type: "info",
     onToggle: () => setToast(false),
   });
@@ -24,6 +24,7 @@ const Signin = () => {
   useEffect(() => {}, [token]);
 
   const handleClick = (evnt) => {
+    evnt.preventDefault();
     let _t = new Date().getTime().toString();
     setToken(_t);
     auth.signin(_t).then(() => navigate("/"));
@@ -45,6 +46,7 @@ const Signin = () => {
             id="username"
             name="username"
             value={user.username}
+            required={true}
             onChange={(e) => handleChange(e)}
           />
         </div>
@@ -55,11 +57,12 @@ const Signin = () => {
             id="password"
             name="password"
             value={user.password}
+            required={true}
             onChange={(e) => handleChange(e)}
           />
         </div>
         <div className="form__group btn__group">
-          <button className="btn__primary" onClick={() => handleClick()}>
+          <button className="btn__primary" onClick={(e) => handleClick(e)}>
             Submit
           </button>
           <button className="btn__secondary">Cancel</button>

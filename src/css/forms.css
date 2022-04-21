@@ -2,7 +2,7 @@
   @apply flex mx-auto;
 }
 .form__group {
-  @apply py-1;
+  @apply py-3;
 }
 .form__group label {
   @apply block text-sm;

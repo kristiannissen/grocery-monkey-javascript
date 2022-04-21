@@ -5,7 +5,7 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 
-import "./layout.css";
+import "./../css/layout.css";
 
 import { Header } from "./../components/";
 

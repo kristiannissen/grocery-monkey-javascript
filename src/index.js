@@ -11,7 +11,7 @@ import { AuthContext, AuthState, AuthProvider } from "./context/auth";
 import App from "./app";
 import ErrorBoundary from "./errorboundary";
 
-import "./styles.css";
+import "./css/global.css";
 
 const elm = document.getElementById(window.ns.components.root);
 const root = createRoot(elm);

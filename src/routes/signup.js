@@ -2,11 +2,12 @@
  * @file Signin
  *
  */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "./../context/auth";
+import { Toast } from "./../components";
 
-import "./signin.css";
+import "./../css/forms.css";
 
 const Signup = () => {
   const [token, setToken] = useState("");
@@ -16,11 +17,19 @@ const Signup = () => {
     terms: false,
   });
   const auth = useAuth();
+  const [toast, setToast] = useState({
+    show: false,
+    message: "",
+    type: "info",
+    onToggle: () => setToast(false),
+  });
+
+  let formRef = useRef();
+
   let navigate = useNavigate();
 
-  useEffect(() => {}, [token]);
-
   const handleClick = (evnt) => {
+    evnt.preventDefault();
     let _t = new Date().getTime().toString();
     setToken(_t);
     auth.signin(_t).then(() => navigate("/"));
@@ -46,6 +55,7 @@ const Signup = () => {
             name="username"
             value={user.username}
             onChange={(e) => handleChange(e)}
+            required={true}
           />
         </div>
         <div className="form__group">
@@ -55,6 +65,7 @@ const Signup = () => {
             id="password"
             name="password"
             value={user.password}
+            required={true}
             onChange={(e) => handleChange(e)}
           />
         </div>
@@ -65,13 +76,14 @@ const Signup = () => {
               id="terms"
               name="terms"
               value={user.terms}
+              required={true}
               onChange={(e) => handleChange(e)}
             />
             Terms
           </label>
         </div>
         <div className="form__group btn__group">
-          <button className="btn__primary" onClick={() => handleClick()}>
+          <button className="btn__primary" onClick={(e) => handleClick(e)}>
             Submit
           </button>
           <button className="btn__secondary">Cancel</button>
@@ -80,6 +92,7 @@ const Signup = () => {
           <Link to="/signin">Signin</Link> if you have an account!
         </div>
       </form>
+      <Toast {...toast} />
     </div>
   );
 };

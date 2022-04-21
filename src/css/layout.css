@@ -2,7 +2,7 @@
   @apply flex;
 }
 .content {
-  @apply flex w-full justify-center items-center;
+  @apply flex w-full justify-center pt-2;
 }
 /* Global elements */
 .btn__primary {
@@ -21,5 +21,5 @@
   @apply rounded-r-lg;
 }
 .card {
-  @apply py-2 px-2 shadow-md rounded;
+  @apply py-6 px-6 shadow-md shadow-slate-400 rounded h-fit;
 }
