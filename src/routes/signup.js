@@ -10,7 +10,11 @@ import "./signin.css";
 
 const Signup = () => {
   const [token, setToken] = useState("");
-  const [user, setUser] = useState({ username: "", password: "" });
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+    terms: false,
+  });
   const auth = useAuth();
   let navigate = useNavigate();
 
@@ -23,7 +27,10 @@ const Signup = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    // const { name, value } = e.target;
+    let name = e.target.name;
+    let value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
     let entry = { [name]: value };
     setUser({ ...user, ...entry });
   };
@@ -51,14 +58,26 @@ const Signup = () => {
             onChange={(e) => handleChange(e)}
           />
         </div>
+        <div className="form__group">
+          <label htmlFor="terms">
+            <input
+              type="checkbox"
+              id="terms"
+              name="terms"
+              value={user.terms}
+              onChange={(e) => handleChange(e)}
+            />
+            Terms
+          </label>
+        </div>
         <div className="form__group btn__group">
           <button className="btn__primary" onClick={() => handleClick()}>
             Submit
           </button>
           <button className="btn__secondary">Cancel</button>
         </div>
-        <div className="form__group">
-          <Link to="/signin">Signin</Link>
+        <div className="form__group form__group_helpertext">
+          <Link to="/signin">Signin</Link> if you have an account!
         </div>
       </form>
     </div>

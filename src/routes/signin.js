@@ -13,7 +13,7 @@ const Signin = () => {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({ username: "", password: "" });
   const [toast, setToast] = useState({
-    show: true,
+    show: false,
     message: "Hello Kitty",
     type: "info",
     onToggle: () => setToast(false),
@@ -64,8 +64,8 @@ const Signin = () => {
           </button>
           <button className="btn__secondary">Cancel</button>
         </div>
-        <div className="form__group">
-          <Link to="/signup">Signup</Link>
+        <div className="form__group form__group_helpertext">
+          <Link to="/signup">Signup</Link> if you have no account!
         </div>
       </form>
       <Toast {...toast} />

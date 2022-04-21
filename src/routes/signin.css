@@ -11,3 +11,14 @@
 .form__group input[type="password"] {
   @apply border p-1;
 }
+.form__group input[type="checkbox"] {
+  @apply mr-1;
+}
+.form__group input[type="checkbox"]:after {
+}
+.form__group_helpertext {
+  @apply text-xs;
+}
+.form__group_helpertext a {
+  @apply underline;
+}
