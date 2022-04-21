@@ -6,10 +6,10 @@
 }
 /* Global elements */
 .btn__primary {
-  @apply px-2 py-2 shadow-md rounded text-white bg-purple-900 text-sm tracking-tight;
+  @apply px-4 py-2 shadow-md rounded text-white bg-purple-900 text-sm tracking-tight;
 }
 .btn__secondary {
-  @apply px-2 py-2 shadow-md rounded text-white bg-purple-400 text-sm tracking-tight;
+  @apply px-4 py-2 shadow-md rounded text-white bg-purple-400 text-sm tracking-tight;
 }
 .btn__group > button {
   @apply rounded-none;

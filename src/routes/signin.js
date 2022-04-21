@@ -10,6 +10,7 @@ import "./signin.css";
 
 const Signin = () => {
   const [token, setToken] = useState("");
+  const [user, setUser] = useState({ username: "", password: "" });
   const auth = useAuth();
   let navigate = useNavigate();
 
@@ -21,16 +22,34 @@ const Signin = () => {
     auth.signin(_t).then(() => navigate("/"));
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    let entry = { [name]: value };
+    setUser({ ...user, ...entry });
+  };
+
   return (
     <div className="form__container card">
       <form>
         <div className="form__group">
-          <label>Username</label>
-          <input type="text" name="username" />
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={user.username}
+            onChange={(e) => handleChange(e)}
+          />
         </div>
         <div className="form__group">
-          <label>Username</label>
-          <input type="password" name="password" />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={user.password}
+            onChange={(e) => handleChange(e)}
+          />
         </div>
         <div className="form__group btn__group">
           <button className="btn__primary" onClick={() => handleClick()}>
