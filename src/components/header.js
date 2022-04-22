@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { useShell } from "./../context/shell";
 
-import "./header.css";
+import "./../css/header.css";
 
 const Header = () => {
   const shell = useShell();
@@ -21,6 +21,9 @@ const Header = () => {
           </Link>
           <Link to="/mealplan" className="header__nav_link">
             Mealplan
+          </Link>
+          <Link to="/signin" className="header__nav_link">
+            Signin
           </Link>
         </nav>
       </header>

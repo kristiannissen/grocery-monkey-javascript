@@ -15,38 +15,25 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  let [token, setToken] = useState(null);
+  let _token = localStorage.getItem("token");
+  const [token, setToken] = useState(_token);
+  console.log("AuthProvider: ", token);
 
-  let signin = useCallback(
-    async (t) => {
-      localStorage.setItem("token", t);
-      setToken(t);
-    },
-    [token]
-  );
-
-  let getToken = useCallback(() => {
-    let _t = localStorage.getItem("token");
-    return _t;
-  }, [token]);
-
-  let hasToken = useCallback(() => {
-    return token !== null ? true : false;
-  }, [token]);
-
-  let signout = useCallback(async () => {
-    console.log("sign out");
+  const signin = useCallback(async (token) => {
+    localStorage.setItem("token", token);
+    setToken(token);
   }, []);
 
-  let val = { getToken, hasToken, signin, signout };
+  const val = { token, signin };
 
   return <AuthContext.Provider value={val}>{children}</AuthContext.Provider>;
 };
 
 export const RequireAuth = ({ element }) => {
   const auth = useAuth();
+  console.log("RequireAuth: ", auth);
 
-  if (!auth.hasToken()) {
+  if (auth.token === null) {
     return <Navigate to="/signin" />;
   }
 

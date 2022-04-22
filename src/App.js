@@ -5,7 +5,7 @@ import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import { Layout, Home, NoMatch, Groceries, Signin, Signup } from "./routes/";
-import { RequireAuth } from "./context/auth";
+import { AuthProvider, RequireAuth } from "./context/auth";
 
 const MealPlan = React.lazy(() => import("./routes/mealplan"));
 
@@ -18,7 +18,7 @@ const App = () => {
           path="mealplan"
           element={
             <React.Suspense fallback={<>...</>}>
-              <RequireAuth element={<MealPlan />} />
+              <MealPlan />
             </React.Suspense>
           }
         />
