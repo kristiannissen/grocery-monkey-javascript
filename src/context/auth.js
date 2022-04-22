@@ -17,7 +17,6 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   let _token = localStorage.getItem("token");
   const [token, setToken] = useState(_token);
-  console.log("AuthProvider: ", token);
 
   const signin = useCallback(async (token) => {
     localStorage.setItem("token", token);
@@ -31,7 +30,6 @@ export const AuthProvider = ({ children }) => {
 
 export const RequireAuth = ({ element }) => {
   const auth = useAuth();
-  console.log("RequireAuth: ", auth);
 
   if (auth.token === null) {
     return <Navigate to="/signin" />;

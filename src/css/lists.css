@@ -1,0 +1,15 @@
+.list {
+  @apply basis-full;
+}
+.list__item {
+  @apply py-2 flex;
+}
+.list__item_title {
+  @apply basis-9/12;
+}
+.list__item_content {
+  @apply basis-3/12;
+}
+.list__form_container {
+  @apply basis-full;
+}

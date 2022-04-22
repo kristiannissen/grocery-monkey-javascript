@@ -11,6 +11,9 @@
 .btn__secondary {
   @apply px-4 py-2 shadow-md rounded text-white bg-purple-400 text-sm tracking-tight;
 }
+.btn__primary_round {
+  @apply px-3 py-2 rounded-full shadow-md text-white bg-purple-400 text-xs tracking-tight;
+}
 .btn__group > button {
   @apply rounded-none;
 }

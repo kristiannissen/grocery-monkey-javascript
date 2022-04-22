@@ -13,12 +13,19 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<RequireAuth element={<Groceries />} />} />
+        <Route
+          index
+          element={
+            <React.Suspense fallback={<>...</>}>
+              <RequireAuth element={<Groceries />} />
+            </React.Suspense>
+          }
+        />
         <Route
           path="mealplan"
           element={
             <React.Suspense fallback={<>...</>}>
-              <MealPlan />
+              <RequireAuth element={<MealPlan />} />
             </React.Suspense>
           }
         />
