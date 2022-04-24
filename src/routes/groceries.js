@@ -4,6 +4,7 @@ import { useRandomNumber } from "./../hooks/userandomnumber";
 
 import "./../css/forms.css";
 import "./../css/lists.css";
+import "./../css/groceries.css";
 
 const Groceries = () => {
   const [grocery, setGrocery] = useState({

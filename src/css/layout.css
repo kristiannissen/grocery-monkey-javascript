@@ -2,7 +2,7 @@
   @apply flex;
 }
 .content {
-  @apply flex w-full justify-center pt-2;
+  @apply flex w-full justify-center pt-2 px-3;
 }
 /* Global elements */
 .btn__primary {
