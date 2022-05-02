@@ -28,5 +28,8 @@
     "watch": "webpack --config webpack.config.js --watch --color",
     "start": "webpack-dev-server --env port=3000",
     "prettier": "./node_modules/prettier/bin-prettier.js --write ."
+  },
+  {
+    "main": "/src/index.js"
   }
 }
