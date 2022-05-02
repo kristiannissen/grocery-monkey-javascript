@@ -8,7 +8,7 @@ import { HashRouter } from "react-router-dom";
 import { ShellContext, ShellState } from "./context/shell";
 import { AuthContext, AuthState, AuthProvider } from "./context/auth";
 
-import App from "./App";
+import App from "./app";
 import ErrorBoundary from "./errorboundary";
 
 import "./css/global.css";
