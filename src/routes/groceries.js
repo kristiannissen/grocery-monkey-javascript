@@ -14,7 +14,7 @@ const Groceries = () => {
   const [groceries, setGroceries] = useState([]);
 
   useEffect(() => {
-    console.log("Update groceries: ", groceries)
+    console.log("Update groceries: ", groceries);
   }, [groceries]);
 
   const handleChange = (e) => {
