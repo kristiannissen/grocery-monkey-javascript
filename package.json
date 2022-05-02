@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "npx": "^10.2.2",
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {

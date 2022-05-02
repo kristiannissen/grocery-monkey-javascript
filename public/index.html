@@ -1,6 +1,32 @@
-<html>
-  <script defer src="/index.bundle.js"></script>
+<!DOCTYPE html>
+<html class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <title>Webpack App</title>
+    <link rel="manifest" href="/manifest.json" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1,
+    viewport-fit=cover"
+    />
+    <script>
+      (function (ns, undefined) {
+        ns.components = {
+          header: "app__shell_header",
+          root: "app__shell_content",
+          dialog: "app__shell_dialog",
+        };
+        ns.theme = "dark";
+      })((window.ns = window.ns || {}));
+    </script>
+  <script defer src="/index.js?33eae228812f3088f4b5"></script><script defer src="/service-worker.js?33eae228812f3088f4b5"></script></head>
   <body>
-    <div id="root"></div>
+    <div class="container mx-auto">
+      <div id="app__shell">
+        <div id="app__shell_header"></div>
+        <div id="app__shell_content"></div>
+        <div id="app__shell_dialog"></div>
+      </div>
+    </div>
   </body>
 </html>
