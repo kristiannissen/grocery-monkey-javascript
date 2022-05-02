@@ -2,7 +2,7 @@
   @apply flex flex-row justify-between items-center px-0.5 w-full;
 }
 .header__title {
-  @apply basis-3/4 font-black font-serif;
+  @apply basis-3/4 font-black pl-2;
 }
 .header__nav {
   @apply basis-1/4 flex justify-around;
